@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #202020;
+            --accent-color: #02882A;
+            --background-color: #f4f4f4;
+            --footer-color: #000000;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            transition: 0.5s;
+        }
+
+        html {
+            font-size: 16px;
+            line-height: 2.1rem;
+        }
+
+        html,
+        body {
+            height: 100%;
+            min-width: 320px;
+            font-family: 'Montserrat', sans-serif;
+
+        }
+
+        body {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            color: var(--main-color);
+            background-color: var(--background-color);
+            min-width: 320px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        ul {
+            list-style-position: inside;
+        }
+
+        a {
+            position: relative;
+            text-decoration: none;
+            color: var(--accent-color);
+        }
+
+        a::after {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+
+            width: 0;
+            height: 1px;
+            background: var(--accent-color);
+
+            content: '';
+
+            transition: 0.3s;
+        }
+
+        a:hover::after {
+            left: 0;
+            width: 100%;
+        }
+
+        .wrapper {
+            flex: 1 0 auto;
+        }
+
+        .footer {
+            flex: 0 0 auto;
+            padding: 20px 0;
+            color: #ffffff;
+            background-color: var(--footer-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        main {
+            margin: 50px 0;
+        }
+
+        section {
+            margin: 50px 0;
+            box-shadow: 0 0.4px 2.7px rgba(0, 0, 0, 0.022),
+                0 1px 6.9px rgba(0, 0, 0, 0.031),
+                0 2.1px 14.2px rgba(0, 0, 0, 0.039),
+                0 4.4px 29.2px rgba(0, 0, 0, 0.048),
+                0 12px 80px rgba(0, 0, 0, 0.07);
+            padding: 70px 50px;
+            border-radius: 4px;
+        }
+
+        .main-title {
+            text-transform: uppercase;
+            font-size: 3rem;
+            line-height: 4rem;
+            letter-spacing: 3px;
+            font-weight: 500;
+            margin-bottom: 3rem;
+        }
+
+        .section__title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.7rem;
+        }
+
+        .section__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-color);
+        }
+
+        h3 {
+            margin: 1.7rem 0 0.4rem;
+        }
+
+        .contacts__info {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contacts__left {
+            margin-right: 50px;
+        }
+
+        .avatar {
+            width: 200px;
+        }
+
+        .goal {
+            font-weight: 700;
+            margin-top: 0.9rem;
+        }
+
+        .footer__contacts {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+
+            list-style: none;
+        }
+
+        .footer__contacts li {
+            min-width: 150px;
+            margin: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--background-color);
+        }
+
+        .footer__icon {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 1rem;
+        }
+
+        svg {
+            fill: var(--accent-color);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .switch {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+
+            margin-right: 10px;
+
+            border-radius: 20px;
+            background: var(--main-color);
+
+            cursor: pointer;
+        }
+
+        .switch::before {
+            content: '';
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50px;
+            background-color: var(--background-color);
+            transition: 0.3s;
+            transform: translateX(0);
+        }
+
+        .switch::after {
+            content: '';
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50px;
+            background-color: var(--main-color);
+            transform: translateX(40px);
+            transition: 0.3s;
+        }
+
+        .dark-theme {
+            background-color: #000;
+            color: var(--background-color);
+        }
+
+        .dark-theme section {
+            box-shadow: 0 0 30px 20px var(--main-color);
+            border: 2px solid var(--main-color);
+        }
+
+        .dark-theme .footer {
+            background-color: #1e1e1e;
+        }
+
+        .dark-theme .switch {
+            background-color: var(--background-color);
+        }
+
+        .dark-theme .switch::before {
+            transform: translateX(-40px);
+        }
+
+        .dark-theme .switch::after {
+            transform: translateX(0);
+        }
+
+        .theme-toggle span {
+            line-height: 20px;
+        }
+
+        @media (max-width: 992px) {
+            html {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            .main-title {
+                font-size: 2.7rem;
+                line-height: 3.2rem;
+                margin-bottom: 1.8rem;
+            }
+        }
+
+        @media (max-width: 560px) {
+            html {
+                font-size: 13px;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+
+            .main-title {
+                font-size: 2.4rem;
+                line-height: 3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer__contacts {
+                flex-direction: column;
+            }
+
+            .avatar {
+                width: 100%;
+            }
+
+            .contacts__left {
+                margin: 0 0 2rem;
+            }
+        }        
+    </style>
+</head>
+
+<body class="">
+    <div class="wrapper">
+        <div class="theme-toggle">
+            <div class="switch" id="js_switchItem"></div>
+            <span>Dark/Light mode</span>
+        </div>
+        <div class="container">
+
+            <main>
+
+                <div class="main-content">
+
+                    <section class="contacts">
+                        <h2 class="main-title">Aleksandr Pisarik</h2>
+                        <div class="contacts__info">
+                            <div class="contacts__left">
+                                <img class="avatar" src="avatar.jpg" alt="Aleksandr Pissarik avatar">
+                            </div>
+                            <div class="contacts__right">
+                                <p>Located in <strong>Minsk, Belarus</strong></p>
+                                <p>Tel, Viber, Telegram, WhatsApp: <strong>+375 25 968-69-19</strong></p>
+                                <p>Discord: <strong>Malagor#6535</strong></p>
+
+                                <p>E-mail: <a href="mailto:seo.dnja@gmail.com">seo.dnja@gmail.com</a></p>
+
+                                <p>GitHub: <a href="https://github.com/Malagor">github.com/Malagor</a></p>
+                                <p>Facebook: <a
+                                        href="https://www.facebook.com/alex.malagor">facebook.com/alex.malagor</a></p>
+                            </div>
+                        </div>
+
+                    </section>
+                    <!-- /.contacts -->
+
+                    <section class="summary">
+                        <h2 class="section__title">Summary</h2>
+
+                        <p>I started with SEO website promotion.<br>
+                            Gradually began to produce sites using popular free CMS.<br>
+                            I wanted more understanding and opportunities. I started learning layout on my own, then
+                            JavaScript.<br>
+                            To understand how CMS works, I started learning PHP on my own. I took courses on Wordpress
+                            and ModX.<br>
+                            I can make websites using my own layout and make some changes to the BackEnd on these
+                            systems.</p>
+
+                        <p class="goal">Goal: to move away from website promotion and focus on development and
+                            programming.</p>
+                    </section>
+                    <!-- /.summary -->
+
+                    <section class="experience">
+                        <h2 class="section__title">Experience and education</h2>
+
+                        <p>Graduated <a href="https://baa.by/">BAA Gorki (БГСХА)</a> - Land management engineer -
+                            <br>
+                            <em>1994 – 2001</em></p>
+                        <p>Graduated <a href="https://iti.bsuir.by/specialties/2">BSUIR Minsk (БГУИР)</a> - Information
+                            technology software - <br>
+                            <em>2004 – 2006</em></p>
+
+                        <h3><strong>Self-education:</strong></h3>
+                        <ul>
+                            <li>Completed <a href="https://glo.academy/">Glo Academy:</a> Basic JS</li>
+                            <li>Completed Glo Academy: Mini-course: PHP</li>
+                            <li>Completed Glo Academy: PHP: Basic Course</li>
+                            <li>Completed Glo Academy: SVG-graphics</li>
+                            <li>Completed Glo Academy: jQuery Killer</li>
+                            <li>Completed Glo Academy: Wordpress</li>
+                            <li>Completed <a href="https://ntschool.ru">New Tecnology School:</a> ModX Revolution
+                            </li>
+                            <li>Completed <a href="https://dmitrylavrik.ru/">Дмитрий Лаврик:</a> Smart Grid</li>
+                            <li>Studying <a href="https://learn.javascript.ru">learn.javascript.ru</a></li>
+                            <li>Studying code.mu: <a href="http://code.mu/ru/javascript/book/prime/">JavaScript</a></li>
+                            <li>Studying code.mu: <a
+                                    href="http://code.mu/ru/javascript/server/nodejs/book/prime/">NodeJs</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <!-- /.experience -->
+
+                    <section class="code">
+                        <h2 class="section__title">Code examples</h2>
+
+                        <ul>
+                            <li><a href="https://www.codewars.com/users/Malagor">Codewars @Malagor</a></li>
+                            <li><a href="https://github.com/Malagor">Github @Malagor</a></li>
+                        </ul>
+
+                    </section>
+                    <!-- /.code -->
+
+                    <section class="skills">
+                        <h2 class="section__title">Skills</h2>
+
+                        <ul>
+                            <li>Figma, Photoshop, Avacode</li>
+                            <li>PhpStorm, Visual Studio Code</li>
+                            <li>HTML</li>
+                            <li>CSS, SASS(SCSS)</li>
+                            <li>BEM</li>
+                            <li>SmartGrid</li>
+                            <li>JS(ES5, ES6)</li>
+                            <li>jQuery</li>
+                            <li>Gulp, Webpack</li>
+                            <li>PHP</li>
+                            <li>MySQL</li>
+                            <li>Git</li>
+                            <li>ModX(Rev & Evo), Wordpress, Opencart, Prestashop, UMI CMS</li>
+                        </ul>
+
+                    </section>
+                    <!-- /.skills -->
+
+                    <section class="english">
+                        <h2 class="section__title">English level</h2>
+
+                        <p>Level: A2</p>
+                    </section>
+                    <!-- /.english -->
+
+                </div>
+
+            </main>
+        </div>
+
+    </div>
+    <!-- /.wrapper -->
+
+    <div class="footer">
+        <div class="container">
+            <ul class="footer__contacts">
+                <li>
+                    <div class="footer__icon icon-location">
+                        <svg version="1.1" id="location" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 217.109 217.109"
+                            style="enable-background:new 0 0 217.109 217.109;" xml:space="preserve">
+                            <g>
+                                <path
+                                    d="M108.552,0C62.42,0,24.89,37.535,24.89,83.672c0,32.967,13.802,66.314,39.914,96.437
+                                        c19.503,22.499,38.831,35.246,39.645,35.778c1.246,0.815,2.675,1.222,4.104,1.222c1.428,0,2.857-0.407,4.104-1.222
+                                        c0.813-0.532,20.144-13.279,39.647-35.777c26.114-30.124,39.917-63.471,39.917-96.438C192.22,37.535,154.686,0,108.552,0z
+                                        M108.552,200.4C93.165,188.934,39.89,144.806,39.89,83.672C39.89,45.806,70.691,15,108.552,15
+                                        c37.864,0,68.668,30.806,68.668,68.672C177.22,144.806,123.94,188.934,108.552,200.4z" />
+                                <path d="M108.557,50.449c-18.31,0-33.206,14.897-33.206,33.209c0,18.307,14.896,33.201,33.206,33.201
+                                        c18.31,0,33.205-14.894,33.205-33.201C141.762,65.347,126.866,50.449,108.557,50.449z M108.557,101.859
+                                        c-10.039,0-18.206-8.165-18.206-18.201c0-10.041,8.167-18.209,18.206-18.209c10.038,0,18.205,8.168,18.205,18.209
+                                        C126.762,93.694,118.595,101.859,108.557,101.859z" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div>Minsk, Belarus</div>
+                </li>
+                <li>
+                    <div class="footer__icon icon-phone">
+                        <svg version="1.1" id="phone" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 211.621 211.621"
+                            style="enable-background:new 0 0 211.621 211.621;" xml:space="preserve">
+                            <g>
+                                <path d="M180.948,27.722C163.07,9.844,139.299-0.001,114.017,0c-4.143,0-7.5,3.358-7.5,7.5c0,4.142,3.358,7.5,7.5,7.5
+                                        c21.276-0.001,41.279,8.284,56.324,23.329c15.046,15.045,23.331,35.049,23.33,56.326c0,4.142,3.357,7.5,7.5,7.5
+                                        c4.142,0,7.5-3.358,7.5-7.499C208.672,69.371,198.827,45.6,180.948,27.722z" />
+                                <path d="M150.096,94.656c0,4.142,3.358,7.5,7.501,7.499c4.142,0,7.499-3.358,7.499-7.5c-0.002-28.16-22.916-51.073-51.078-51.077
+                                        c-0.001,0,0,0-0.001,0c-4.142,0-7.499,3.357-7.5,7.499c0,4.142,3.357,7.5,7.499,7.501
+                                        C133.909,58.581,150.094,74.765,150.096,94.656z" />
+                                <path
+                                    d="M133.5,132.896c-11.432-0.592-17.256,7.91-20.049,11.994c-2.339,3.419-1.463,8.086,1.956,10.425
+                                        c3.419,2.339,8.086,1.463,10.425-1.956c3.3-4.825,4.795-5.584,6.823-5.488c6.491,0.763,32.056,19.497,34.616,25.355
+                                        c0.642,1.725,0.618,3.416-0.071,5.473c-2.684,7.966-7.127,13.564-12.851,16.188c-5.438,2.493-12.105,2.267-19.276-0.651
+                                        c-26.777-10.914-50.171-26.145-69.531-45.271c-0.008-0.008-0.016-0.015-0.023-0.023c-19.086-19.341-34.289-42.705-45.185-69.441
+                                        c-2.919-7.177-3.145-13.845-0.652-19.282c2.624-5.724,8.222-10.167,16.181-12.848c2.064-0.692,3.752-0.714,5.461-0.078
+                                        c5.879,2.569,24.612,28.133,25.368,34.551c0.108,2.104-0.657,3.598-5.478,6.892c-3.42,2.336-4.299,7.003-1.962,10.423
+                                        c2.336,3.42,7.002,4.298,10.423,1.962c4.086-2.79,12.586-8.598,11.996-20.069C81.021,69.07,57.713,37.339,46.576,33.244
+                                        c-4.953-1.846-10.163-1.878-15.491-0.09C19.097,37.191,10.439,44.389,6.047,53.969c-4.26,9.294-4.125,20.077,0.395,31.189
+                                        c11.661,28.612,27.976,53.647,48.491,74.412c0.05,0.051,0.101,0.101,0.153,0.15c20.75,20.477,45.756,36.762,74.33,48.409
+                                        c5.722,2.327,11.357,3.492,16.746,3.492c5.074,0,9.932-1.032,14.438-3.098c9.581-4.391,16.778-13.048,20.818-25.044
+                                        c1.784-5.318,1.755-10.526-0.077-15.456C177.232,156.856,145.501,133.548,133.5,132.896z" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div>+375 25 968-69-19</div>
+                </li>
+                <li>
+                    <div class="footer__icon icon-mail">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200.814 200.814"
+                            style="enable-background:new 0 0 200.814 200.814;" xml:space="preserve">
+                            <path
+                                d="M100.407,0C45.043,0,0.001,45.042,0.001,100.406c0,55.366,45.042,100.409,100.406,100.409c4.143,0,7.5-3.358,7.5-7.5
+                                c0-4.142-3.357-7.5-7.5-7.5c-47.093,0-85.406-38.314-85.406-85.409C15.001,53.313,53.314,15,100.407,15s85.406,38.313,85.406,85.406
+                                v23.23c0,8.672-7.056,15.727-15.729,15.727c-8.672,0-15.727-7.055-15.727-15.727v-23.23c0-29.75-24.202-53.953-53.951-53.953
+                                c-29.75,0-53.953,24.203-53.953,53.953c0,29.752,24.203,53.957,53.953,53.957c16.511,0,31.305-7.463,41.209-19.185
+                                c4.572,11.238,15.607,19.185,28.469,19.185c16.943,0,30.729-13.784,30.729-30.727v-23.23C200.813,45.042,155.771,0,100.407,0z
+                                M100.407,139.363c-21.479,0-38.953-17.476-38.953-38.957c0-21.479,17.475-38.953,38.953-38.953
+                                c21.478,0,38.951,17.474,38.951,38.953C139.358,121.887,121.885,139.363,100.407,139.363z" />
+                        </svg>
+                    </div>
+                    <div>seo.dnja@gmail.com</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            document.getElementById('js_switchItem').addEventListener('click', ()=> {
+                document.body.classList.toggle("dark-theme");
+            });
+        }
+    </script>
+
+</body>
+
+</html>
